@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="comportamentoCriarAgendamento.js"></script>
+    <title>SmartHome</title>
+</head>
+<body>
+    
+        <div class="header">
+          
+            <div>
+                <a href="divisoes.html">
+                    <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+                </a>
+            </div>
+    
+            <div id="Smarthome">
+                <a href="divisoes.html">
+                    <h1>SmartHome</h1>
+                </a>
+            </div>
+          
+            <div id="horas">horas</div>
+        </div>
+
+        <form id="NovoAgendamento">
+
+            <label for="divisaoCasa">Escolha a divisão da casa desejada:</label>
+            <select id="divisaoCasa" name="divisaoCasa">
+                <option value="Sala">Sala</option>
+                <option value="Escritorio">Escritório</option>
+                <option value="Cozinha">Cozinha</option>
+                <option value="Quarto">Quarto</option>
+                <option value="Todas as divisões">Todas as divisões</option>
+            </select>
+            
+            <label for="dispositivo">Escolha o dispositivo que deseja:</label>
+            <select id="dispositivo" name="dispositivo">
+                <option value="Ar condicionado">Ar condicionado</option>
+                <option value="Estores">Estores</option>
+                <option value="Luzes">Luzes</option>
+            </select>
+
+            <label for="diasSemana">Escolha os dias que deseja:</label>
+            <div>
+                <input type="checkbox" id="segunda" name="dia" value="Segunda-feira">
+                <label for="segunda">Segunda-feira</label>
+            </div>
+            <div>
+                <input type="checkbox" id="terca" name="dia" value="Terça-feira">
+                <label for="terca">Terça-feira</label>
+            </div>
+            <div>
+                <input type="checkbox" id="quarta" name="dia" value="Quarta-feira">
+                <label for="quarta">Quarta-feira</label>
+            </div>
+            <div>
+                <input type="checkbox" id="quinta" name="dia" value="Quinta-feira">
+                <label for="quinta">Quinta-feira</label>
+            </div>
+            <div>
+                <input type="checkbox" id="sexta" name="dia" value="Sexta-feira">
+                <label for="sexta">Sexta-feira</label>
+            </div>
+            <div>
+                <input type="checkbox" id="sabado" name="dia" value="Sábado">
+                <label for="sabado">Sábado</label>
+            </div>
+            <div>
+                <input type="checkbox" id="domingo" name="dia" value="Domingo">
+                <label for="domingo">Domingo</label>
+            </div>
+
+            <label for="horaLigar">Hora de ligar:</label>
+            <input type="time" id="horaLigar" name="horaLigar">
+            
+            <label for="horaDesligar">Hora de desligar:</label>
+            <input type="time" id="horaDesligar" name="horaDesligar">
+            
+            <input type="button" id="botaoSubmeter" value="Próximo passo">
+
+        </form>
+
+        <a href="agendamentos.html"><div class="voltar">Voltar</div></a>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="comportamentoSugeridosFrigorifico.js"></script>
+    <title>SmartHome</title>
+</head>
+<body>
+    <div class="header">
+          
+        <div>
+            <a href="divisoes.html">
+                <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+            </a>
+        </div>
+
+        <div id="Smarthome">
+            <a href="divisoes.html">
+                <h1>SmartHome</h1>
+            </a>
+        </div>
+      
+        <div id="horas">horas</div>
+    </div>
+    <h1 id="frigorifico-titulo">Sugestões para o seu Frigorífico:</h1>
+    <img  id="linha1image">
+    <img  id="linha2image">
+    <img  id="linha3image">
+    <img  id="linha4image">
+    <img  id="linha5image">
+    <table class="tabela-produtossugeridos">
+        <tr>
+            <th class="th-produtos" scope="col">Nome do Produto</th>
+            <th class="th-produtos" scope="col"> Prazo de Validade</th>
+            <th class="th-produtos" scope="col">Score Nutricional</th>
+            <th class="th-produtos" scope="col">Preço</th>
+        </tr>
+        <tr>
+            <td id="linha1nome"></td>
+            <td id="linha1data"></td>
+            <td id="linha1score"></td>
+            <td id="linha1price"></td>
+
+
+        </tr>
+        <tr>
+            <td id="linha2nome"></td>
+            <td id="linha2data"></td>
+            <td id="linha2score"></td>
+            <td id="linha2price"></td>
+
+        </tr>
+        <tr>
+            <td id="linha3nome"></td>
+            <td id="linha3data"></td>
+            <td id="linha3score"></td>
+            <td id="linha3price"></td>
+
+        </tr>
+        <tr>
+            <td id="linha4nome"></td>
+            <td id="linha4data"></td>
+            <td id="linha4score"></td>
+            <td id="linha4price"></td>
+
+        </tr>
+        <tr>
+            <td id="linha5nome"></td>
+            <td id="linha5data"></td>
+            <td id="linha5score"></td>
+            <td id="linha5price"></td>
+    </table>
+    <div onclick="AdicionarCarrinho1()"> 
+        <img id="add1" src="images/png-transparent-plus-and-minus-signs-computer-icons-symbol-mas-miscellaneous-cross-arrow.png"/>
+    </div>
+    <div onclick="AdicionarCarrinho2()"><img id="add2" src="images/png-transparent-plus-and-minus-signs-computer-icons-symbol-mas-miscellaneous-cross-arrow.png"/></div>
+    <div onclick="AdicionarCarrinho3()"><img id="add3" src="images/png-transparent-plus-and-minus-signs-computer-icons-symbol-mas-miscellaneous-cross-arrow.png"/></div>
+    <div onclick="AdicionarCarrinho4()"><img id="add4" src="images/png-transparent-plus-and-minus-signs-computer-icons-symbol-mas-miscellaneous-cross-arrow.png"/></div>
+    <div onclick="AdicionarCarrinho5()" ><img id="add5" src="images/png-transparent-plus-and-minus-signs-computer-icons-symbol-mas-miscellaneous-cross-arrow.png"/></div>
+
+
+    <div onclick="RetirarCarrinho1()"> 
+        <img id="min1" src="images/43625.png"/>
+    </div>
+    <div  onclick="RetirarCarrinho2()"><img id="min2" src="images/43625.png"/></div>
+    <div  onclick="RetirarCarrinho3()"><img id="min3" src="images/43625.png"/></div>
+    <div  onclick="RetirarCarrinho4()"><img id="min4" src="images/43625.png"/></div>
+    <div  onclick="RetirarCarrinho5()"><img id="min5" src="images/43625.png"/></div>
+    <div id="carrinho">
+        <h1 id="carrinho-titulo">Carrinho</h1>
+        <ul id="lista-carrinho">
+            
+
+        </ul>
+        <p id="preco-carrinho"></p>
+        <button id="finalizarpagamentobtn" onclick="Verify()" >Proceder para o checkout<button>
+    </div>
+    
+
+    <div id="areyousure1" class="modal">
+        <h3 >Lista do carrinho está vazia!</h3>
+        <button id="btnmbway" onclick="ClosePop()" >Voltar</button>
+    </div>
+
+    
+    <div class="divisao" id="div10">
+        <a href="frig2.html"><div class="voltar">Voltar</div></a>
+    </div>
+</body>
+</html>

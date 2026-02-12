@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Controles</title>
+</head>
+<body>
+
+    <div class="header">
+          
+        <div>
+            <a href="divisoes.html">
+                <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+            </a>
+        </div>
+
+        <div id="Smarthome">
+            <a href="divisoes.html">
+                <h1>SmartHome</h1>
+            </a>
+        </div>
+      
+        <div id="horas">horas</div>
+    </div>
+
+    <h1 id="titulo-ac">Quarto </h1>
+   
+        
+    <div id="containerr">
+
+        <h1 id="jj">Controlador de Luzes</h1>
+
+        <button id="toggleButton" onclick="toggleButton()">Desligado</button>
+        <label id="intensityLabel" for="intensitySlider">Intensidade da luz:</label>
+        <input type="range" id="intensitySlider" min="1" max="3" step="1">
+        <div id="colorButtons">
+            <button id = "btn_white" class="colorButton" onclick="setColor('branco')" >Branco</button>
+            <button id = "btn_yellow" class="colorButton" onclick="setColor('amarelo')" >Amarelo</button>
+        </div>
+        <button id="applyButton" onclick="document.getElementById('areyousure').style.display='block'">Aplicar</button>
+    </div>
+
+    <div class="divisao" id="div10">
+        <a href="quarto.html"><div class="voltar">Voltar</div></a>
+    </div>
+    <div id="areyousure" class="modal">
+        <h3>Tem a certeza que pretende aplicar as alterações?</h3>
+        <button type="button" id="btnsim" onclick="applySettings()">SIM</button>
+        <button id="btnnao" onclick="document.getElementById('areyousure').style.display='none'" >NÃO</button>
+    
+    </div>
+
+    <script>
+        let isButtonOn = false;
+        let selectedIntensity = 1;
+        let selectedColor = '';
+        const localStorageKey = 'quarto-luz'; // Nome do array
+        var cor1 = document.getElementById("btn_white");
+        var cor2 = document.getElementById("btn_yellow");
+            
+
+        // Verificar se existem valores no localStorage ao carregar a página
+        window.onload = function() {
+            atualizahoras()
+            
+            cor1.style.backgroundColor = "#808080";
+
+            cor2.style.backgroundColor = "#808080" ;
+            
+            const storedSettings = JSON.parse(localStorage.getItem(localStorageKey));
+            if (storedSettings && storedSettings.length === 3) {
+                selectedIntensity = storedSettings[0];
+                selectedColor = storedSettings[1];
+                var on_off = storedSettings[2];
+
+                console.log("entrei");
+                
+                if (on_off == "ligado"){
+
+                    isButtonOn = true;
+
+                }
+                if (isButtonOn){
+
+
+                }
+                applyStoredSettings();
+            }
+        };
+
+        function atualizahoras(){
+            let data = new Date();
+            var tempo = document.getElementById("horas");
+            let horas = data.getHours();
+            let minutos = data.getMinutes();
+            if(minutos<10){
+                minutos = "0" + minutos;
+            }
+        
+            tempo.innerHTML = horas +":"+minutos;
+            setTimeout("atualizahoras()",1000)
+        }
+
+        function applyStoredSettings() {
+            const toggleButton = document.getElementById('toggleButton');
+            const intensitySlider = document.getElementById('intensitySlider');
+            const colorButtons = document.querySelectorAll('.colorButton');
+
+            toggleButton.textContent = isButtonOn ? 'Ligado' : 'Desligado';
+            toggleButton.style.backgroundColor = isButtonOn ? 'green' : 'red';
+            intensitySlider.value = selectedIntensity;
+            intensitySlider.disabled = !isButtonOn;
+            
+            if(!isButtonOn){
+                
+                intensitySlider.disabled;
+                colorButtons.disabled;
+            
+                
+            }
+
+           
+
+            if (selectedColor == "amarelo"){
+
+                cor2.style.backgroundColor = "#d2e319";
+
+                cor1.style.backgroundColor = "#808080" ;
+
+              
+            }
+
+            else if (selectedColor == "branco") {
+
+                    cor1.style.backgroundColor = "#FFFFFF";
+
+                    cor2.style.backgroundColor = "#808080" ;
+            }
+
+            else {
+
+                cor1.style.backgroundColor = "#808080";
+
+                cor2.style.backgroundColor = "#808080" ;
+            }
+
+
+            ///colorButtons.forEach(button => {
+                ///button.style.backgroundColor = isButtonOn && button.textContent.toLowerCase() === selectedColor ? selectedColor : '#d2e319';
+                ///button.disabled = !isButtonOn;
+            ///});
+
+            const applyButton = document.getElementById('applyButton');
+
+            if(isButtonOn){
+                
+                applyButton.classList.toggle('enabled', isButtonOn);
+
+            }
+          
+        }
+
+        function toggleButton() {
+            isButtonOn = !isButtonOn;
+            const toggleButton = document.getElementById('toggleButton');
+            const intensitySlider = document.getElementById('intensitySlider');
+            const colorButtons = document.querySelectorAll('.colorButton');
+            const applyButton = document.getElementById('applyButton');
+
+            toggleButton.textContent = isButtonOn ? 'Ligado' : 'Desligado';
+            toggleButton.style.backgroundColor = isButtonOn ? 'green' : 'red';
+            intensitySlider.disabled = !isButtonOn;
+
+            colorButtons.forEach(button => {
+                button.disabled = !isButtonOn;
+                button.style.backgroundColor = isButtonOn ? button.textContent.toLowerCase() : '#808080';
+            });
+
+            
+            if(isButtonOn){
+                
+                applyButton.classList.toggle('enabled', isButtonOn);
+
+            }
+
+        }
+
+        function setColor(color) {
+
+            selectedColor = color;
+
+            
+            var cor1 = document.getElementById("btn_white");
+            var cor2 = document.getElementById("btn_yellow");
+
+            if (selectedColor == "amarelo"){
+
+                cor2.style.backgroundColor = "#d2e319";
+
+                cor1.style.backgroundColor = "#808080" ;
+
+              
+            }
+
+            else if (selectedColor == "branco") {
+
+                    cor1.style.backgroundColor = "#FFFFFF";
+
+                    cor2.style.backgroundColor = "#808080" ;
+            }
+
+            else {
+
+                cor1.style.backgroundColor = "#808080";
+
+                cor2.style.backgroundColor = "#808080" ;
+            }
+
+            ///const colorButtons = document.querySelectorAll('.colorButton');
+            ///colorButtons.forEach(button => {
+              ///button.style.backgroundColor = isButtonOn && button.textContent.toLowerCase() === selectedColor ? selectedColor : '#d2e319';
+              ///console.log(button.textContent.toLowerCase())
+            ///});
+        }
+
+        function applySettings() {
+            if (isButtonOn) {
+                // Perform actions with selectedIntensity and selectedColor
+                // For this example, we'll log the values to console and store in local storage
+                console.log('Intensity:', selectedIntensity);
+                console.log('Color:', selectedColor);
+
+                // Store in local storage with the name 'sala'
+                var ligado = "ligado";
+                const settingsArray = [selectedIntensity, selectedColor, ligado];
+                localStorage.setItem(localStorageKey, JSON.stringify(settingsArray));
+            }
+            else{
+                
+                var ligado = "desligado";
+
+                const settingsArray = [selectedIntensity, selectedColor, ligado];
+                localStorage.setItem(localStorageKey, JSON.stringify(settingsArray));
+                selectedIntensity = 1;
+                selectedColor = ''
+                localStorage.removeItem(localStorageKey);
+                
+
+            }
+            window.location.href = "quarto.html";
+        }
+
+        // Adicionando um ouvinte de eventos para rastrear as alterações na barra de intensidade
+        document.getElementById('intensitySlider').addEventListener('input', function() {
+            selectedIntensity = parseInt(this.value, 10);
+            applyStoredSettings();
+        });
+    </script>
+</body>
+</html>

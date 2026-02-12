@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="comportamento.js"></script>
+    <title>SmartHome</title>
+</head>
+<body>
+    <div class="header">
+          
+        <div>
+            <a href="divisoes.html">
+                <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+            </a>
+        </div>
+
+        <div id="Smarthome">
+            <a href="divisoes.html">
+                <h1>SmartHome</h1>
+            </a>
+        </div>
+      
+        <div id="horas">horas</div>
+    </div>
+
+    <h1 id="pagamentosTitulo">Pagamento</h1>
+
+    <div class="container">
+        <h1 id="tituloInfoPagamento">Informações de Pagamento</h1>
+        <form id="infoPagamentoFrig">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="morada">Morada:</label>
+            <input type="text" id="morada" name="morada" required>
+
+            <label for="telemovel">Telemóvel para contacto:</label>
+            <input type="tel" id="telemovel" name="telemovel" pattern="[0-9]{9}" required>
+
+            <label for="metodoPagamento" >Método de Pagamento:</label>
+
+            <select id="metodoPagamento" name="metodoPagamento" required>
+                <option value="">Escolha o método de pagamento</option>
+                <option value="MBway">MBWay</option>
+                <option value="Pagamento na entrega">Pagamento na entrega</option>
+            </select>
+
+            <div id="campoTelefone" style="display: none;">
+                <label for="telefone">Telemóvel para pagamento:</label><br>
+                <input type="tel" id="telefone" name="telefone" pattern="[0-9]{9}" required>
+
+            </div>
+        </form>
+
+        <button id="finalizarPagamentoBtn">Finalizar Pagamento</button>
+    </div>
+
+    <div id="caixaDetalhesPagamento" class="caixaDetalhesPagamentoClass">
+        <div id="caixaDetalhesPagamento2" class="caixaDetalhesPagamento">
+          <span id="botaoClose" class="close">&times;</span>
+          <div id="detalhes-pagamento"></div>
+        </div>
+        <a href="agradecimento.html"><button type="button" id="btnsim">Confirmar pagamento</button></a>
+        <button type="button" id="btnnao" onclick= "document.getElementById('caixaDetalhesPagamento').style.display = 'none'">Voltar <br> atrás</button>
+
+      </div>
+
+      <div id="carrinho">
+        <h1 id="carrinho-titulo">Carrinho</h1>
+        <ul id="lista-carrinho">
+            
+
+        </ul>
+        <p id="preco-carrinho"></p>
+    </div>
+    
+
+    <div class="divisao" id="div10">
+        <a href="sugeridos-desp.html"><div class="voltar">Voltar</div></a>
+    </div>
+
+
+    <script>
+        let carrinho =[];
+        document.getElementById("finalizarPagamentoBtn").addEventListener("click", popUpConfirmacaoPagamento)
+        window.onload = principal;
+
+        function principal(){
+            carregaCarrinho();
+            preencheCarrinho();
+        }
+
+
+        function mostrarCampoTelefone() {
+            var metodoPagamento = document.getElementById('metodoPagamento');
+            var campoTelefone = document.getElementById('campoTelefone');
+            var btnFinalizarPagamento = document.getElementById("finalizarPagamentoBtn");
+    
+            if (metodoPagamento.value === 'MBway') {
+                campoTelefone.style.display = 'block';
+                btnFinalizarPagamento.style.display = "block";
+            } 
+            else if(metodoPagamento.value ==="Pagamento na entrega"){
+                btnFinalizarPagamento.style.display = "block";
+                campoTelefone.style.display = 'none';
+
+            }
+            
+            else {
+                campoTelefone.style.display = 'none';
+                btnFinalizarPagamento.style.display = "none";
+            }
+        }
+
+
+        function popUpConfirmacaoPagamento(){
+
+            let nome = document.getElementById("nome").value;
+            let morada = document.getElementById("morada").value; 
+            let telemovelContacto = document.getElementById("telemovel").value;
+            let metodoPagamentoEscolhido = document.getElementById('metodoPagamento').value;
+            let telemovelPagamento = document.getElementById("telefone").value;
+            let caixaInfoPagamento = document.getElementById("caixaDetalhesPagamento");
+            let caixaInfoPagamento2 = document.getElementById("detalhes-pagamento");
+
+
+            caixaInfoPagamento2.textContent = "";
+            let tituloDetalhesPagamento = document.createElement("h1");
+            let novoParagrafoNome = document.createElement("p");
+            let novoParagrafoMorada = document.createElement("p");
+            let novoParagrafoTelemovel = document.createElement("p");
+            let novoParagrafoMetodoPagamentoEscolhido = document.createElement("p");
+            let novoParagrafoTelemovelPagamento = document.createElement("p");
+            let novoParagrafoValorTotal = document.createElement("p");
+
+
+
+            tituloDetalhesPagamento.textContent = "Detalhes do pagamento:"
+            novoParagrafoNome.textContent = "Nome: " + String(nome);
+            novoParagrafoMorada.textContent = "Morada: " + String(morada);
+            novoParagrafoTelemovel.textContent = "Telemóvel: " + telemovelContacto.toString();
+            novoParagrafoMetodoPagamentoEscolhido.textContent = "Método de pagamento: " + String(metodoPagamentoEscolhido);
+            novoParagrafoTelemovelPagamento.textContent = "Telemóvel para pagamento: " + telemovelPagamento.toString();
+            novoParagrafoValorTotal.textContent = document.getElementById("preco-carrinho").textContent;
+
+            caixaInfoPagamento2.appendChild(tituloDetalhesPagamento);
+            caixaInfoPagamento2.appendChild(novoParagrafoNome);
+            caixaInfoPagamento2.appendChild(novoParagrafoMorada);
+            caixaInfoPagamento2.appendChild(novoParagrafoTelemovel);
+            caixaInfoPagamento2.appendChild(novoParagrafoMetodoPagamentoEscolhido);
+            caixaInfoPagamento2.appendChild(novoParagrafoTelemovelPagamento);
+            caixaInfoPagamento2.appendChild(novoParagrafoValorTotal);
+
+            if (nome && morada && telemovel && metodoPagamento) {
+
+                caixaInfoPagamento.style.display = 'block';
+
+
+                let botaoFecharCaixa = document.getElementById("botaoClose");
+                botaoFecharCaixa.onclick = function() {
+                    caixaInfoPagamento.style.display = 'none';
+                };
+
+                console.log("Boas")
+            }
+
+            else{
+                console.log("Não preencheu tudo");
+            }
+            
+
+        }
+
+        function carregaCarrinho(){
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+        }
+
+        function preencheCarrinho(){
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            let precoDoLocalStorage = JSON.parse(localStorage.getItem("preco")) || [];
+            let precoTotalCarrinho = document.getElementById("preco-carrinho");
+            let carrinhoLista = document.getElementById("lista-carrinho");
+
+            console.log(carrinho);
+            for(let i = 0; i<carrinho.length; i++){
+
+                let novoItem = carrinho[i][0] + "--------x" + carrinho[i][3];
+                let novo = document.createElement("li");
+                novo.textContent = novoItem;
+                carrinhoLista.appendChild(novo);
+
+            }
+            precoTotalCarrinho.textContent = precoDoLocalStorage;
+
+        }
+
+
+
+        setInterval(mostrarCampoTelefone, 500); // Verifica a cada 0.5 segundos
+    </script>
+
+</body>
+</html>

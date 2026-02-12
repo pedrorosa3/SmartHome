@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="comportamentoAC-cozinha.js"></script>
+    <title>SmartHome</title>
+</head>
+<body>
+    <div class="header">
+          
+        <div>
+            <a href="divisoes.html">
+                <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+            </a>
+        </div>
+
+        <div id="Smarthome">
+            <a href="divisoes.html">
+                <h1>SmartHome</h1>
+            </a>
+        </div>
+      
+        <div id="horas">horas</div>
+    </div>
+<h1 id="titulo-ac">Cozinha</h1>
+<div id="areyousure" class="modal">
+    <h3>Tem a certeza que pretende aplicar as alterações?</h3>
+    <button type="button" id="btnsim" onclick="AplicarAlteracoes()">SIM</button>
+    <button id="btnnao" onclick="document.getElementById('areyousure').style.display='none'" >NÃO</button>
+
+</div>
+
+<div class="container">
+
+
+    <h1>Controlador de Ar Condicionado</h1>
+    <div id="div_status">
+        <p id="estadoTexto">Estado: <span id="status" class="desligado">Desligado</span></p>
+        <button id="powerButton" onclick="togglePower()">
+            <img id="pb" src="images/powerbutton.png" alt="Power Button">
+        </button>
+    </div>
+    
+    <div id="div_temp">
+        <p>Temperatura: <span id="temperature">23°C</span></p>
+        <input type="range" id="temperatureSlider" min="16" max="30" step="1" value="23" oninput="setTemperature(this.value)">
+    </div>
+    <div id="div_fan">
+        <p>Intensidade da Ventoinha: <span id="fanSpeed">2*</span></p>
+        <input type="range" id="fanSpeedSlider" min="1" max="3" step="1" value="2" oninput="setFanSpeed(this.value)">
+    </div>
+    
+    
+    <button id="aplicar" onclick="document.getElementById('areyousure').style.display='block'">APLICAR</button>
+</div>
+<div class="divisao" id="div10">
+    <a href="cozinha.html"><div class="voltar">Voltar</div></a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="comportamentoAgendamento.js"></script>
+    <title>SmartHome</title>
+</head>
+<body>
+        
+        <div class="header">
+          
+            <div>
+                <a href="divisoes.html">
+                    <img id="logo-casa" src="images/casa2-removebg-preview.png" alt="Logo casa">
+                </a>
+            </div>
+    
+            <div id="Smarthome">
+                <a href="divisoes.html">
+                    <h1>SmartHome</h1>
+                </a>
+            </div>
+          
+            <div id="horas">horas</div>
+        </div>
+     
+        <div class="divisao" id="div1">
+            <h1 id="escritoriotitu"></h1>
+        </div>
+
+        <div id="sidebar">
+            <a href="sala.html" onclick="toggleSidebar(event)">
+              <img src="images/Sala-modified-removebg-preview.png" alt="Icone Sala">
+            </a>
+
+            <a href="escritorio.html" onclick="toggleSidebar(event)">
+                <img src="images/escritorio-modified-removebg-preview.png" alt="Ícone Escritorio">
+              </a>
+
+            <a href="cozinha.html" onclick="toggleSidebar(event)">
+              <img src="images/cozinha-modified (1).png" alt="Ícone Cozinha">
+            </a>
+
+            <a href="quarto.html" onclick="toggleSidebar(event)">
+                <img src="images/quarto-modified-removebg-preview (1).png" alt="Ícone quarto">
+              </a>
+
+            <a href="agendamentos.html" onclick="toggleSidebar(event)">
+                <img src="images/relogioagendamentos-modified-removebg-preview (1).png" alt="Ícone agendamentos">
+            </a>
+
+            <a href="geral.html" onclick="toggleSidebar(event)">
+                <img src="images/casageral.png" alt="Ícone geral">
+            </a>
+
+
+          </div>
+
+          <h2>Lista de agendamentos criados:</h2>
+
+        <div class="lista-container">
+         <ul class="lista-agendamentos">
+        </ul> 
+        </div>
+
+        
+        <button class="btn-adicionar" id="botaoAdicionar">Adicionar<br>Agendamento</button>
+
+        <div id="areyousure" class="modal">
+            <h3>Tem a certeza que pretende apagar este agendamento? Esta ação é irreversível.</h3>
+            <button type="button" id="btnsim" onclick="apagarAgendamento(indice)">SIM</button>
+            <button id="btnnao" onclick="document.getElementById('areyousure').style.display='none'" >NÃO</button>
+        
+        </div>
+
+
+        <div id="modal-agendamento" class="modal">
+            <div class="modal-content-agendamentos">
+                <span class="close">&times;</span>
+                <h3>Escreva o nome do novo agendamento:</h3>
+                <input type="text" id="nomeAgendamentoInput" class="input-agendamento" maxlength="35">
+                <button id="confirmarNome">Confirmar</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="caixaDetalhesAgendamento" class="caixaDetalhesAgendamentoClass">
+        <div class="caixaDetalhesAgendamento">
+          <span id="botaoClose" class="close">&times;</span>
+          <h1 id="tituloAgendamento" class="tituloAgendamento"></h1>
+          <div id="detalhes-agendamento"></div>
+          <button id="btnEditarAgendamento" class="btn-editar">Editar agendamento</button>
+        </div>
+      </div>
+
+    <a href="divisoes.html"><div class="voltar">Voltar</div></a>
+
+
+    
+</body>
+</html>
